@@ -19,3 +19,9 @@ class Bank(models.Model):
         bank = cls.objects.get(pk=1)
         bank.total_funds -= amount
         bank.save()
+
+    @classmethod
+    def is_sufficient(cls, amount: Decimal):
+        bank = cls.objects.get(pk=1)
+        return bank.total_funds >= amount
+

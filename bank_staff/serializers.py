@@ -5,7 +5,7 @@ from loan_provider.models import LoanFundApplication
 
 from authentication.models import CustomUser
 
-from loan_customer.models import LoanApplication
+from loan_customer.models import LoanApplication, Loan
 
 
 class BankSerializer(serializers.ModelSerializer):
@@ -26,3 +26,17 @@ class BankStaffLoanFundApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoanFundApplication
         fields = ['id', 'amount', 'status', 'loan_provider']
+
+
+class BankStaffLoanApplicationSerializer(serializers.ModelSerializer):
+    customer = UsernameIDCustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = LoanApplication
+        fields = ['id', 'amount', 'status', 'customer']
+
+
+class LoanCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Loan
+        fields = ['interest_rate', 'end_date']
