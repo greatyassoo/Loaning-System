@@ -7,7 +7,7 @@ from loan_provider.enums import Status
 
 
 class LoanApplication(models.Model):
-    amount = models.FloatField()
+    amount = models.DecimalField(max_digits=19, decimal_places=2)
     status = models.CharField(
         max_length=10,
         choices=Status,
@@ -22,8 +22,8 @@ class LoanApplication(models.Model):
 
 
 class Loan(models.Model):
-    amount = models.FloatField()
-    interest_rate = models.FloatField()
+    amount = models.DecimalField(max_digits=19, decimal_places=2)
+    interest_rate = models.DecimalField(max_digits=3, decimal_places=2)  # eg: 0.1, 0.22
     start_date = models.DateField(auto_now_add=True)
     end_date = models.DateField()
     customer = models.ForeignKey(
@@ -33,7 +33,7 @@ class Loan(models.Model):
 
 
 class Payment(models.Model):
-    amount = models.FloatField()
+    amount = models.DecimalField(max_digits=19, decimal_places=2)
     loan = models.ForeignKey(
         "loan_customer.Loan",
         on_delete=models.CASCADE

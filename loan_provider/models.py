@@ -6,7 +6,7 @@ from .enums import Status
 
 
 class LoanFundApplication(models.Model):
-    amount = models.FloatField()
+    amount = models.DecimalField(max_digits=19, decimal_places=2)
     status = models.CharField(
         max_length=10,
         choices=Status,
@@ -16,7 +16,3 @@ class LoanFundApplication(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-
-
-
-

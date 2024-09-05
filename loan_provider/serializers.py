@@ -7,4 +7,3 @@ class LoanFundApplicationSerializer(serializers.ModelSerializer):
         model = LoanFundApplication
         fields = ['id', 'amount', 'status']
         read_only_fields = ['loan_provider']
-        
