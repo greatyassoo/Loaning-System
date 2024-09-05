@@ -5,19 +5,21 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
+from .models import CustomUser
+from .models import BearerToken
 
-from .token import BearerToken
-from .serializers import UserSerializer
+from .serializers import CustomUserSerializer
+from . import permissions
+
+from django.shortcuts import get_object_or_404
 
 
 @api_view(['POST'])
 def signup(request):
-    serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
+    serializer = CustomUserSerializer(data=request.data)
+    if serializer.is_valid() and not request.data["role"] == "BANK_STAFF":
         serializer.save()
-        user = User.objects.get(username=request.data['username'])
+        user = CustomUser.objects.get(username=request.data['username'])
         user.set_password(request.data['password'])
         user.save()
         token, created = Token.objects.get_or_create(user=user)
@@ -31,7 +33,7 @@ def signup(request):
 
 @api_view(['POST'])
 def login(request):
-    user = get_object_or_404(User, username=request.data['username'])
+    user = get_object_or_404(CustomUser, username=request.data['username'])
     if not user.check_password(request.data['password']):
         return Response({'detail': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -41,6 +43,6 @@ def login(request):
 
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, BearerToken])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated, permissions.IsLoanProvider])
 def hello(request):
     return Response("Hello World", status=status.HTTP_200_OK)

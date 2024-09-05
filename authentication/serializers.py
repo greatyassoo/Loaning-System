@@ -1,11 +1,14 @@
 from rest_framework import serializers
 
-from django.contrib.auth.models import User
+from .models import CustomUser
+from .auth_enums import UserRole
 
 # Create your views here.
 
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
+    role = serializers.ChoiceField(choices=[(tag, tag.value) for tag in UserRole])
+
     class Meta:
-        model = User
-        fields = ('id', 'username', 'password')  # TODO: add role
+        model = CustomUser
+        fields = ['id', 'username', 'password', 'role']
