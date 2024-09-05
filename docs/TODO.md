@@ -44,9 +44,9 @@ Elicitated requirments:
     
     Bank Personnel:
         - View applications from loan providers and customers
-        - View status of loan fund applications
+        - View status of loan fund applications  [DONE]
         - View status of loan applications
-        - Approve or reject loan fund applications
+        - Approve or reject loan fund applications  [DONE]
         - Approve or reject loan applications
         - Define max and min amounts, interest rate, duration for each loan
         

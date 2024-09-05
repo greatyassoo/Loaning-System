@@ -23,5 +23,7 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('admin/', admin.site.urls),
     path('loan-fund-application/', include('loan_provider.urls')),
-    path('customer/', include('loan_customer.urls'))
+    path('customer/', include('loan_customer.urls')),
+    path('bank/', include('bank_staff.urls')),
+
 ]
