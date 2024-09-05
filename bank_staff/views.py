@@ -7,10 +7,13 @@ from rest_framework.authentication import SessionAuthentication
 from authentication.permissions import IsBankStaff
 from authentication.models import BearerToken
 
-from .serializers import BankSerializer, BankLoanFundApplicationSerializer
+from .serializers import BankSerializer, BankStaffLoanFundApplicationSerializer
 from .models import Bank
+from . import services
 
 from loan_provider.models import LoanFundApplication
+
+from loan_customer.models import LoanApplication
 
 
 # Create your views here.
@@ -31,15 +34,17 @@ class BaseBankStaffView:  # common permissions across all views
 
 
 class BankStaffLoanFundApplicationList(BaseBankStaffView, generics.ListAPIView):
-    serializer_class = BankLoanFundApplicationSerializer
+    serializer_class = BankStaffLoanFundApplicationSerializer
     queryset = LoanFundApplication.objects.all()
 
 
 class BankStaffLoanFundApplicationRetrieveUpdate(BaseBankStaffView, generics.RetrieveUpdateAPIView):
-    serializer_class = BankLoanFundApplicationSerializer
+    serializer_class = BankStaffLoanFundApplicationSerializer
     queryset = LoanFundApplication.objects.all()
 
     def partial_update(self, request, *args, **kwargs):  # approve/deny applications. Update bank funds on approve
         kwargs['partial'] = True
-        Bank.add_funds(LoanFundApplication.objects.get(id=kwargs['pk']).amount)
+        response = services.update_loan_fund_application(kwargs['pk'], request.data.get('status'))
+        if response:
+            return response
         return self.update(request, *args, **kwargs)

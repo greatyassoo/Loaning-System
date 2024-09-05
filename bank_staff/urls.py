@@ -6,4 +6,6 @@ urlpatterns = [
     path("", views.get_bank),
     path("loan-fund-application/", views.BankStaffLoanFundApplicationList.as_view()),
     path("loan-fund-application/<int:pk>/", views.BankStaffLoanFundApplicationRetrieveUpdate.as_view()),
+    # path("loan-application/", views.BankStaffLoanApplicationList.as_view()),
+
 ]
