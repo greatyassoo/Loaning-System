@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  title: Loaning System
+  version: 1.0.0
+servers:
+  - url: http://{{localhost}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: bank staff
+  - name: bank staff > Loan Fund Application
+  - name: bank staff > Loan Application
+  - name: loan provider
+  - name: auth
+  - name: loan customer
+paths:
+  /bank/loan-fund-application/:
+    get:
+      tags:
+        - bank staff > Loan Fund Application
+      summary: List Loan Fund Applications
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /bank/loan-fund-application/13/:
+    patch:
+      tags:
+        - bank staff > Loan Fund Application
+      summary: Accept/Reject Loan Fund Applications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: APPROVED
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /bank/loan-fund-application/1:
+    get:
+      tags:
+        - bank staff > Loan Fund Application
+      summary: Retrieve Loan Fund Application
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /bank/loan-application/:
+    get:
+      tags:
+        - bank staff > Loan Application
+      summary: List Loan Fund Applications Copy
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /bank/loan-application/7/:
+    get:
+      tags:
+        - bank staff > Loan Application
+      summary: Retrieve Loan Application
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /bank/loan-application/20/:
+    patch:
+      tags:
+        - bank staff > Loan Application
+      summary: Accept/Reject Loan Applications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: APPROVED
+                interest_rate: 0.1
+                days: 365
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /bank/:
+    get:
+      tags:
+        - bank staff
+      summary: Get Bank Funds
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /loan-fund-application/:
+    get:
+      tags:
+        - loan provider
+      summary: Get Loan Fund Applications
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - loan provider
+      summary: Post Loan Fund Application
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: 1000.5
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /signup:
+    post:
+      tags:
+        - auth
+      summary: signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: bank_staff
+                password: bank_staff
+                role: BANK_STAFF
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - auth
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: loanProvider
+                password: loanProvider
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customer/loan-application:
+    get:
+      tags:
+        - loan customer
+      summary: Get Loan Applications
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - loan customer
+      summary: Post Loan Application
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: 0.01
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
