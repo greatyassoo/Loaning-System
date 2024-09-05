@@ -38,9 +38,9 @@ Elicitated requirments:
         - create a loan fund application  [DONE]
 
     Loan Customer:
-        - Should be able to view the status of loan applications
+        - Should be able to view the status of loan applications  [DONE]
         - Make payments for his loans
-        - create a loan application
+        - create a loan application [DONE]
     
     Bank Personnel:
         - View applications from loan providers and customers

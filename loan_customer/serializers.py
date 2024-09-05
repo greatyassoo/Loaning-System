@@ -8,7 +8,8 @@ from .models import Payment
 class LoanApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoanApplication
-        fields = ['id', 'amount', 'status', 'customer']
+        fields = ['id', 'amount', 'status']
+        read_only_fields = ['customer']
 
 
 class LoanSerializer(serializers.ModelSerializer):
