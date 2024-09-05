@@ -7,13 +7,14 @@ from rest_framework.authentication import SessionAuthentication
 from authentication.permissions import IsBankStaff
 from authentication.models import BearerToken
 
-from .serializers import BankSerializer, BankStaffLoanFundApplicationSerializer, BankStaffLoanApplicationSerializer
+from .serializers import BankSerializer, BankStaffLoanFundApplicationSerializer, BankStaffLoanApplicationSerializer, \
+    LoanListSerializer
 from .models import Bank
 from . import services
 
 from loan_provider.models import LoanFundApplication
 
-from loan_customer.models import LoanApplication
+from loan_customer.models import LoanApplication, Loan
 
 
 # Create your views here.
@@ -67,3 +68,9 @@ class LoanApplicationRetrieveUpdate(BaseView, generics.RetrieveUpdateAPIView):
         if response:
             return response
         return self.update(request, *args, **kwargs)
+
+
+class LoanList(BaseView, generics.ListAPIView):
+    serializer_class = LoanListSerializer
+    queryset = Loan.objects.all()
+

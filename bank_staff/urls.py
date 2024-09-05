@@ -8,5 +8,6 @@ urlpatterns = [
     path("loan-fund-application/<int:pk>/", views.LoanFundApplicationRetrieveUpdate.as_view()),
     path("loan-application/", views.LoanApplicationList.as_view()),
     path("loan-application/<int:pk>/", views.LoanApplicationRetrieveUpdate.as_view()),
+    path("loan/", views.LoanList.as_view()),
 
 ]

@@ -40,3 +40,11 @@ class LoanCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields = ['interest_rate', 'end_date']
+
+
+class LoanListSerializer(serializers.ModelSerializer):
+    customer = UsernameIDCustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = Loan
+        fields = ['id', 'amount', 'interest_rate', 'start_date', 'end_date', 'customer']
