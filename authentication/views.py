@@ -17,7 +17,7 @@ from django.shortcuts import get_object_or_404
 @api_view(['POST'])
 def signup(request):
     serializer = CustomUserSerializer(data=request.data)
-    if serializer.is_valid() and not request.data["role"] == "BANK_STAFF":
+    if serializer.is_valid() and not request.data["role"] == "BANK_STAFF":  # restrict from anyone signing up with BANK_STAFF
         serializer.save()
         user = CustomUser.objects.get(username=request.data['username'])
         user.set_password(request.data['password'])

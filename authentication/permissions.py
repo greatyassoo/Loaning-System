@@ -6,7 +6,6 @@ class IsLoanProvider(BasePermission):
         return bool(request.user.role == 'UserRole.LOAN_PROVIDER')
 
 
-
 class IsLoanCustomer(BasePermission):
     def has_permission(self, request, view):
         return bool(request.user.role == 'UserRole.LOAN_CUSTOMER')
