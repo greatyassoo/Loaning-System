@@ -34,8 +34,8 @@ The Bank Personnel:
 Elicitated requirments:
 
     Loan Provider:
-        - Should be able to view the status of loan fund applications  
-        - create a loan fund application
+        - Should be able to view the status of loan fund applications  [DONE]
+        - create a loan fund application  [DONE]
 
     Loan Customer:
         - Should be able to view the status of loan applications

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "loan_provider.apps.LoanProviderConfig",
     "loan_customer.apps.LoanCustomerConfig",
-    "authentication.apps.AuthenticationConfig"
+    "authentication.apps.AuthenticationConfig",
+    "bank_staff.apps.BankStaffConfig"
 ]
 
 MIDDLEWARE = [
