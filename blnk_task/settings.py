@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "loan_provider.apps.LoanProviderConfig"
+    "loan_provider.apps.LoanProviderConfig",
+    "loan_customer.apps.LoanCustomerConfig"
 ]
 
 MIDDLEWARE = [
